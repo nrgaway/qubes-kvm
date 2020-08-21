@@ -1,0 +1,87 @@
+Name:           qubes-kvm-vm
+Version:        @VERSION@
+Release:        1%{?dist}
+Summary:        Meta packages for Qubes-KVM specific components
+BuildArch:      noarch
+
+Group:          System Environment/Base
+License:        GPLv2+
+URL:            https://www.qubes-os.org/
+#### TODO:
+#Conflicts:      qubes-vm-meta-packages
+#Conflicts:      qubes-vm-dependencies
+#Conflicts:      qubes-vm-recommended
+#Conflicts:      qubes-vm-guivm
+########
+
+Source0: %{name}-%{version}.tar.gz
+
+%description
+Meta packages for easy maintenance of installed Qubes-KVM guest specific
+packages.
+
+%package -n qubes-kvm-vm-dependencies
+Summary: Meta package with packages required in Qubes-KVM guest VM
+Requires: qubes-kvm-config
+Requires: libkvmchan-vm
+Requires: qubes-libvchan-kvm
+Requires: qubes-core-agent
+Requires: qubes-core-agent-systemd
+Requires: qubes-gui-agent
+
+%description -n qubes-kvm-vm-dependencies
+This package depends on packages required to be installed in Qubes-KVM guest VM.
+
+%package -n qubes-kvm-vm-recommended
+Summary: Meta package with packages recommended in Qubes-LVM guest VM
+Requires: xfce4-notifyd
+Requires: pulseaudio-qubes
+Requires: qubes-core-agent-dom0-updates
+Requires: qubes-core-agent-nautilus
+Requires: qubes-core-agent-network-manager
+Requires: qubes-core-agent-networking
+Requires: qubes-core-agent-passwordless-root
+Requires: qubes-gpg-split
+Requires: qubes-img-converter
+Requires: qubes-input-proxy-sender
+Requires: qubes-mgmt-salt-vm-connector
+Requires: qubes-pdf-converter
+Requires: qubes-usb-proxy
+Requires: thunderbird-qubes
+
+%description -n qubes-kvm-vm-recommended
+Installing this package is recommended to have full functionality available in
+Qubes-KVM guest VM.
+
+%package -n qubes-kvm-vm-guivm
+Summary: Meta package with packages required in a Qubes-KVM guest GuiVM
+Requires: xorg-x11-server-Xorg
+Requires: xorg-x11-server-Xephyr
+Requires: xorg-x11-utils
+Requires: xorg-x11-xkb-utils
+Requires: qubes-gui-daemon
+Requires: qubes-core-admin-client
+Requires: qubes-artwork
+Requires: qubes-menus
+
+%description -n qubes-kvm-vm-guivm
+This package depends on packages required to be installed in a Qubes-KVM guest
+GuiVM.
+
+%prep
+%setup -q
+
+%build
+
+%install
+
+%files
+
+%files -n qubes-kvm-vm-dependencies
+
+%files -n qubes-kvm-vm-recommended
+
+%files -n qubes-kvm-vm-guivm
+
+%changelog
+@CHANGELOG@

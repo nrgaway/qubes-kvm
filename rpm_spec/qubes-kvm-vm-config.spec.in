@@ -1,0 +1,38 @@
+Name:           qubes-kvm-vm-config
+Version:        @VERSION@
+Release:        1%{?dist}
+Summary:        Qubes-KVM guest config and overrides
+BuildArch:      noarch
+
+Group:          System Environment/Base
+License:        GPLv2+
+URL:            https://www.qubes-os.org/
+
+Source0: qubes-kvm-vm-%{version}.tar.gz
+
+%description
+Qubes-KVM guest config and overrides
+
+%prep
+%setup -q -n qubes-kvm-vm-%{version}
+
+%build
+
+%install
+install -d %{buildroot}%{_presetdir}
+install -p -m 644 config-vm/70-qubes-kvm-vm.preset %{buildroot}%{_presetdir}/
+#### XXX:  TEMP:
+install -d %{buildroot}%{_unitdir}/qubes-misc-post.service.d
+install -p -m 644 config-vm/qubes-misc-post.service.d/30_qubes-kvm.conf %{buildroot}%{_unitdir}/qubes-misc-post.service.d/
+########
+
+%files
+%dir %{_presetdir}
+%{_presetdir}/70-qubes-kvm-vm.preset
+#### XXX:  TEMP:
+%dir %{_unitdir}/qubes-misc-post.service.d
+%{_unitdir}/qubes-misc-post.service.d/30_qubes-kvm.conf
+########
+
+%changelog
+@CHANGELOG@

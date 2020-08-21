@@ -1,0 +1,34 @@
+
+HOST:
+  SALT-FORMULAS:
+    users-add:
+      - qubes
+    groups-add:
+      - 'user' to 'libvirt' group
+      - 'qemu' to 'kvm' group
+    dracut:
+      - force_drivers+=" vfio vfio-pci vfio_virqfd vfio_iommu_type1 "
+    grub: |
+      # --- IOMMU --------------------------------------------------------------
+      GRUB_CMDLINE_LINUX+=" iommu=on"
+      GRUB_CMDLINE_LINUX+=" amd_iommu=on"
+      GRUB_CMDLINE_LINUX+=" iommu=pt"
+      # --- KVM/VFIO -----------------------------------------------------------
+      # kvm.ignore_msrs=1 required for Windows 10 build 1803+
+      GRUB_CMDLINE_LINUX+=" rd.driver.pre=vfio-pci"
+      #GRUB_CMDLINE_LINUX+=" kvm.ignore_msrs=1"
+      #GRUB_CMDLINE_LINUX+=" vfio_iommu_type1.allow_unsafe_interrupts=1"
+      #GRUB_CMDLINE_LINUX+=" pcie_acs_override=downstream"
+      # --- SELINUX ------------------------------------------------------------
+      # Set selinux to permissible mode (no enforce) for VM testing
+      #GRUB_CMDLINE_LINUX+=" enforcing=0"
+      #GRUB_CMDLINE_LINUX+=" selinux=0"
+    modprobe.d_kvm.conf: |
+      # TODO:  Intel settings
+      options kvm_amd avic=1
+      options kvm_amd nested=1
+      options kvm_amd npt=1
+      #### For Windows 10 update 1803+
+      #options kvm ignore_msrs=1
+    themes:
+      - Custom Qubes-KVM theme

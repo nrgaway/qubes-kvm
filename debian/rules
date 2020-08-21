@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+include /usr/share/dpkg/default.mk
+export DESTDIR=$(shell pwd)/debian/tmp
+
+%:
+	dh $@
+
+override_dh_auto_build:
+
+override_dh_auto_install:
+	make -C repos install-vm-debian

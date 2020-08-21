@@ -1,0 +1,168 @@
+Name:           qubes-kvm-host
+Version:        @VERSION@
+Release:        1%{?dist}
+Summary:        Qubes-KVM host overrides
+BuildArch:      noarch
+
+Group:          System Environment/Base
+License:        GPLv2+
+URL:            https://www.qubes-os.org/
+#### TODO:
+#Conflicts:      qubes-release
+#Conflicts:      qubes-dom0-meta-packages
+########
+
+Source0: qubes-kvm-host-%{version}.tar.gz
+
+# --- KVM virtualization packages ----------------------------------------------
+# Mandatory Packages
+Requires: virt-install
+
+# Default Packages
+#Requires: qemu-kvm
+#Requires: virt-manager
+#Requires: virt-viewer
+
+# VMM-XEN ----------------------------------------------------------------------
+#Requires: xen
+#Requires: xen-hypervisor
+#Requires: xen-libs
+#Requires: xen-licenses
+#Requires: xen-runtime
+#Requires: python3-xen
+
+# CORE-LIBVIRT -----------------------------------------------------------------
+#Requires: libvirt-admin
+Requires: libvirt-bash-completion
+Requires: libvirt-client
+Requires: libvirt-daemon
+Requires: libvirt-daemon-config-network
+Requires: libvirt-daemon-driver-interface
+Requires: libvirt-daemon-driver-libxl
+Requires: libvirt-daemon-driver-network
+Requires: libvirt-daemon-driver-nodedev
+Requires: libvirt-daemon-driver-nwfilter
+Requires: libvirt-daemon-driver-qemu
+Requires: libvirt-daemon-driver-secret
+Requires: libvirt-daemon-driver-storage
+Requires: libvirt-daemon-driver-storage-core
+Requires: libvirt-daemon-driver-storage-disk
+Requires: libvirt-daemon-driver-storage-gluster
+Requires: libvirt-daemon-driver-storage-iscsi
+Requires: libvirt-daemon-driver-storage-iscsi-direct
+Requires: libvirt-daemon-driver-storage-logical
+Requires: libvirt-daemon-driver-storage-mpath
+Requires: libvirt-daemon-driver-storage-rbd
+Requires: libvirt-daemon-driver-storage-scsi
+Requires: libvirt-daemon-driver-storage-sheepdog
+Requires: libvirt-daemon-driver-storage-zfs
+Requires: libvirt-daemon-kvm
+#Requires: libvirt-daemon-xen
+Requires: libvirt-libs
+Requires: python3-libvirt
+
+# --- CORE ---------------------------------------------------------------------
+#### core-vchan-libkvmchan
+Requires: libkvmchan-host
+#Requires: libkvmchan
+#Requires: libkvmchan-libs
+
+#### core-vchan-kvm
+Requires: qubes-libvchan-kvm
+
+#### core-qubesdb
+Requires: qubes-db-dom0
+#Requires: qubes-db
+#Requires: qubes-db-libs
+#Requires: python3-qubesdb
+
+#### core-qrexec
+Requires: qubes-core-qrexec-dom0
+#Requires: qubes-core-qrexec
+#Requires: qubes-core-qrexec-libs
+
+#### linux-utils
+Requires: qubes-utils
+#Requires: qubes-utils-libs
+#Requires: python3-qubesimgconverter
+
+#### core-admin
+Requires: qubes-core-dom0
+#Requires: python3-gbulb
+#Requires: scrypt
+
+#### core-admin-client
+Requires: qubes-core-admin-client
+#Requires: python3-qubesadmin
+
+#### core-admin-addon-whonix
+Requires: qubes-core-admin-addon-whonix
+
+#### core_admin_linux
+Requires: qubes-core-dom0-linux
+#Requires: qubes-core-dom0-linux-kernel-install
+
+# --- MANAGER ------------------------------------------------------------------
+#### manager
+Requires: qubes-manager
+#Requires: qubes-desktop-linux-common
+#Requires: qubes-artwork
+#Requires: python3-Quamash
+
+Requires: qubes-desktop-linux-manager
+Requires: qubes-menus
+
+# --- GUI ----------------------------------------------------------------------
+#### gui-daemon
+Requires: qubes-gui-dom0
+Requires: qubes-audio-dom0
+#Requires: qubes-gui-daemon
+#Requires: qubes-audio-daemon
+
+#### desktop-linux-xfce4
+##Requires: xfce4-settings-qubes
+
+#### desktop-linux-xfce4-xfwm4
+##Requires:    xfwm4
+
+# --- APPS ---------------------------------------------------------------------
+#### app-linux-split-gpg
+Requires: qubes-gpg-split-dom0
+
+#### app-linux-img-converter
+Requires: qubes-img-converter-dom0
+
+#### app-linux-input-proxy
+Requires: qubes-input-proxy
+
+#### app-linux-usb-proxy
+Requires: qubes-usb-proxy-dom0
+
+# --- MANAGEMENT ---------------------------------------------------------------
+#### mgmt-salt
+Requires: qubes-mgmt-salt-dom0
+#Requires: qubes-mgmt-salt
+#Requires: qubes-mgmt-salt-config
+#Requires: qubes-mgmt-salt-admin-tools
+#Requires: qubes-mgmt-salt-base
+#Requires: qubes-mgmt-salt-base-config
+#Requires: qubes-mgmt-salt-base-topd
+#Requires: qubes-mgmt-salt-dom0-qvm
+#Requires: qubes-mgmt-salt-dom0-virtual-machines
+#Requires: qubes-mgmt-salt-dom0-update
+
+%description
+Meta packages for easy maintenance of installed Qubes-KVM host specific
+packages.
+
+%prep
+%setup -q
+
+%build
+
+%install
+
+%files
+
+%changelog
+@CHANGELOG@

@@ -1,0 +1,66 @@
+Source: qubes-kvm
+Section: admin
+Priority: extra
+Maintainer: Jason Mehring <nrgaway@gmail.com>
+Standards-Version: 3.9.5
+Homepage: https://www.qubes-os.org
+Vcs-Git: https://github.com/nrgaway/qubes-kvm
+Build-Depends:
+  debhelper,
+  gnupg
+
+Package: qubes-kvm-vm-dependencies
+Architecture: any
+Depends:
+    qubes-core-agent,
+    qubes-gui-agent,
+    sudo,
+    systemd,
+    ${misc:Depends}
+Recommends:
+    qubes-kvm-vm-recommended
+Description: Meta package with packages required in Qubes-KVM guest VM
+ This package depends on packages required to be installed in Qubes-KVM guest
+ VM.
+
+Package: qubes-kvm-vm-recommended
+Architecture: any
+Depends:
+    xfce4-notifyd,
+    pulseaudio-qubes,
+    qubes-core-agent-dom0-updates,
+    qubes-core-agent-nautilus,
+    qubes-core-agent-network-manager,
+    qubes-core-agent-networking,
+    qubes-core-agent-passwordless-root,
+    qubes-gpg-split,
+    qubes-img-converter,
+    qubes-input-proxy-sender,
+    qubes-mgmt-salt-vm-connector,
+    qubes-pdf-converter,
+    qubes-thunderbird,
+    qubes-usb-proxy
+Description: Meta package with packages recommended in Qubes-KVM guest VM
+ Installing this package is recommended to have full functionality available in
+ Qubes-KVM guest VM.
+
+Package: qubes-kvm-vm-guivm
+Architecture: any
+Depends:
+    xserver-xorg,
+    xserver-xephyr,
+    x11-utils,
+    x11-xkb-utils,
+    qubes-gui-daemon,
+    qubes-core-admin-client,
+    qubes-artwork,
+    qubes-menus
+Description: Meta package with packages required in a Qubes-KVM guest GuiVM
+ This package depends on packages required to be installed in a Qubes-KVM guest
+ GuiVM.
+
+Package: qubes-kvm-vm-config
+Architecture: any
+Depends:
+    systemd
+Description: Qubes-KVM guest config and overrides.

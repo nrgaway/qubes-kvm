@@ -1,0 +1,26 @@
+Name:           qubes-kvm-host-config
+Version:        @VERSION@
+Release:        1%{?dist}
+Summary:        Qubes-KVM host config and overrides
+BuildArch:      noarch
+
+Group:          System Environment/Base
+License:        GPLv2+
+URL:            https://www.qubes-os.org/
+
+Source0: qubes-kvm-host-%{version}.tar.gz
+
+%description
+Qubes-KVM host config and overrides
+
+%prep
+%setup -q -n qubes-kvm-host-%{version}
+
+%build
+
+%install
+
+%files
+
+%changelog
+@CHANGELOG@

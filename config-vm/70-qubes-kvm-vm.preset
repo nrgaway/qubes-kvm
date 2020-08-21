@@ -1,0 +1,133 @@
+# Units that should not run by default in Qubes VMs.
+#
+# This file is part of the qubes-core-vm-systemd package.  To ensure that the
+# default configuration is applied to all units in the list regardless of
+# package installation order, including units added to the list by
+# qubes-core-vm-systemd upgrades, all units in the list are preset by a
+# scriptlet every time qubes-core-vm-systemd is installed or upgraded.  That
+# means that to permanently enable a unit with an [Install] section, you must
+# create your own higher-priority preset file.  (It might be possible to be
+# smarter and keep a list of units previously preset, but this is not
+# implemented.)
+#
+# For units below with no [Install] section, the scriptlet masks them instead.
+# Qubes currently does not provide a way to permanently prevent such units from
+# being masked.
+#
+# Maintainer information:
+#
+# * All units listed here are preset during first install of the *-systemd RPM.
+#   For those units which are disabled here, but don't have an install section
+#   (static units), we mask them during that install.
+# * All units listed here that find themselves below the comment titled
+#   "# Units below this line will be re-preset on package upgrade"
+#   are preset both during install and during upgrade.  This allows you to add
+#   new units here and have them become active when the user's machine upgrades
+#   their *-systemd RPM built by this project.
+#
+# Hi, Matt!  I see you did great with this conversion to systemd presets!
+# Thank you!  Skyler sends you her regards from Europe!
+#   - Rudd-O
+#
+# https://groups.google.com/d/topic/qubes-users/dpM_GHfmEOk/discussion
+
+disable avahi.service
+disable avahi-daemon.service
+disable avahi-daemon.socket
+
+# Fedora only services
+disable rpcbind.service
+disable sendmail.service
+disable sm-client.service
+disable sshd.service
+disable backuppc.service
+
+# Units below this line will be re-preset on package upgrade
+
+disable alsa-store.service
+disable alsa-restore.service
+disable hwclock-save.service
+disable mdmonitor.service
+disable plymouth-start.service
+disable plymouth-read-write.service
+disable plymouth-quit.service
+disable plymouth-quit-wait.service
+disable smartd.service
+disable upower.service
+disable colord.service
+disable wpa_supplicant@.service
+disable dkms.service
+
+# Fedora only services
+disable cpuspeed.service
+disable dnf-makecache.timer
+disable fedora-autorelabel.service
+disable fedora-autorelabel-mark.service
+disable fedora-storage-init.service
+disable fedora-storage-init-late.service
+disable hwclock-load.service
+disable ipmi.service
+disable iptables.service
+disable ip6tables.service
+disable irqbalance.service
+disable mcelog.service
+disable mdmonitor-takeover.service
+disable multipathd.service
+disable openct.service
+disable rngd.service
+disable tcsd.service
+
+# Debian only services
+disable apt-daily-upgrade.timer
+disable apt-daily.timer
+disable cups-browsed.service
+disable avahi-daemon.socket
+
+#### KVM:  TEMP:  XXX:  Disable services not yet implemented
+##enable qubes-sysinit.service
+##enable qubes-early-vm-config.service
+##enable qubes-db.service
+##enable qubes-gui-agent.service
+##enable qubes-update-check.timer
+##enable qubes-misc-post.service
+##enable qubes-updates-proxy.service
+##enable qubes-network.service
+##enable qubes-qrexec-agent.service
+##enable qubes-mount-dirs.service
+##enable qubes-rootfs-resize.service
+##enable qubes-firewall.service
+##enable qubes-meminfo-writer.service
+##enable qubes-iptables.service
+##enable qubes-updates-proxy-forwarder.socket
+##enable haveged.service
+##enable chronyd.service
+##enable xendriverdomain.service
+##enable systemd-timesyncd.service
+##enable qubes-sync-time.service
+##enable qubes-sync-time.timer
+enable qubes-sysinit.service
+enable qubes-early-vm-config.service
+enable qubes-db.service
+enable qubes-update-check.timer
+enable qubes-misc-post.service
+enable qubes-qrexec-agent.service
+enable qubes-mount-dirs.service
+enable qubes-rootfs-resize.service
+enable haveged.service
+enable chronyd.service
+enable systemd-timesyncd.service
+enable qubes-sync-time.service
+enable qubes-sync-time.timer
+disable qubes-gui-agent.service
+disable qubes-network.service
+disable qubes-firewall.service
+disable qubes-meminfo-writer.service
+disable qubes-iptables.service
+disable qubes-updates-proxy-forwarder.socket
+disable qubes-updates-proxy.service
+disable xendriverdomain.service
+########
+
+# Disable useless Xen services in Qubes VM
+disable xenstored.service
+disable xenconsoled.service
